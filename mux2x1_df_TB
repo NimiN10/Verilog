@@ -1,0 +1,22 @@
+module mux2x1_df_tb ();
+  logic a;
+  logic b;
+  logic sel;
+  logic Y;
+
+  mux2x1_df mux1 (a,b,sel,Y);
+
+initial begin
+      a   = 1'b0;
+      b   = 1'b1;
+      sel = 1'b0;
+      #5;
+      sel = 1'b1;
+      #5;
+  end
+
+  initial begin
+    $dumpfile("mux2x1_df.vcd");
+    $dumpvars(0, mux2x1_df_tb);
+  end
+endmodule
