@@ -1,0 +1,26 @@
+module mux4x1_df_tb();
+  logic Y;
+  logic [3:0] I;
+  logic [1:0] sel;
+  
+  mux4x1_df mux2(.*);
+  
+initial begin
+  sel=0;
+  I[0] <= 1'b0;
+  I[1] <= 1'b1;
+  I[2] <= 1'b0;
+  I[3] <= 1'b1;
+  for(int i=0;i<4;i++) begin
+    sel <= i;
+    #5;
+    sel++;
+  end
+  #5;
+end
+  
+  initial begin
+    $dumpfile("mux4x1_df.vcd");
+    $dumpvars(0,mux4x1_df_tb);
+  end
+  endmodule
