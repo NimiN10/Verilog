@@ -1,0 +1,7 @@
+module mux4x1_df(
+  output wire Y,
+  input  wire [3:0] I,
+  input  wire [1:0] sel);
+  assign Y=I[sel]; 
+
+endmodule
