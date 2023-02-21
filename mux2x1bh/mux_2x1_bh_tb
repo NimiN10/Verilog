@@ -1,0 +1,28 @@
+module mux2x1_bh_tb();
+  logic Y;
+  logic [1:0] I;
+  logic sel;
+
+  mux2x1_bh mux3(Y,I,sel);
+  
+  initial begin
+  I<=2'b01;  
+  sel=1'b0;
+   #2;
+  I<=2'b01;
+  sel=1'b1;
+   #2;
+  I<=2'b01;
+  sel=1'b0;
+   #2;
+  I<=2'b10;
+  sel=1'b1;  
+end
+  
+  
+ initial begin
+   $dumpfile("mux2x1_bh.vcd");
+   $dumpvars(0, mux2x1_bh_tb);
+  end
+  
+endmodule
