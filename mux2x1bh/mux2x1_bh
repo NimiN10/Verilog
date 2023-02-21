@@ -1,0 +1,11 @@
+module mux2x1_bh(Y,I,sel);
+  output reg Y;
+  input [1:0] I;
+  input sel;
+  
+  always@(*)
+    if(sel)
+      Y=I[1];
+    else
+      Y=I[0];
+endmodule
