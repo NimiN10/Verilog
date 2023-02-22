@@ -1,4 +1,4 @@
-module mux4x2_bh(Y,I,sel);
+module mux4x1_bh(Y,I,sel);
 output reg Y;
 input [3:0] I;
 input [1:0] sel;
