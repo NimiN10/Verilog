@@ -1,9 +1,9 @@
-module mux4x1_df_tb();
+module mux4x2_df_tb();
   logic Y;
   logic [3:0] I;
   logic [1:0] sel;
   
-  mux4x1_df mux2(.*);
+  mux4x2_df mux2(.*);
   
 initial begin
   sel=0;
@@ -20,7 +20,7 @@ initial begin
 end
   
   initial begin
-    $dumpfile("mux4x1_df.vcd");
-    $dumpvars(0,mux4x1_df_tb);
+    $dumpfile("mux4x2_df.vcd");
+    $dumpvars(0,mux4x2_df_tb);
   end
   endmodule
