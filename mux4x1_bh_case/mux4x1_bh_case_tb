@@ -1,0 +1,25 @@
+module mux4x1_bh_tb();
+wire Y;
+logic [3:0] I;
+logic [1:0] sel;
+
+mux4x1_bh mux4(.*);
+  
+initial 
+  $monitor("time=%d\t Y=%b\t I=%b\t sel=%b",$time,Y,I,sel);
+           
+initial begin
+  sel=2'd0;I=4'd1;
+  #5;
+  sel=2'd1;I=4'd4;
+  #5;
+  sel=2'd2;I=4'd4;
+  #5;
+  sel=2'd3;I=4'd4;
+  #5;
+end
+initial begin
+  $dumpfile("mux4x1_bh.vcd");
+  $dumpvars(0,mux4x1_bh_tb);
+end
+endmodule
