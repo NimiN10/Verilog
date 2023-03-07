@@ -1,0 +1,24 @@
+module FA_4bits_bh_tb();
+  wire [3:0] s;
+  wire c;
+  reg [3:0] a;
+  reg [3:0] b;
+ 
+  FA_4bits_bh FA2(s,c,a,b);
+  
+  initial 
+    $monitor("time=%d\t s=%d\t c=%d\t a=%d\t b=%d\t",$time,s,c,a,b);
+  initial begin
+   a=4'd0;
+   b=4'd0;
+    repeat(16) begin
+      #5 a=a+1;
+      repeat(16)
+        #5 b=b+1;
+    end
+  end
+  initial begin
+    $dumpfile("FA_4bits_bh.vcd");
+    $dumpvars(0,FA_4bits_bh_tb);
+    end
+endmodule
