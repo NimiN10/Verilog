@@ -1,0 +1,9 @@
+module FA_4bits_bh(s,c,a,b);
+  output reg [3:0] s;
+  output reg c;
+  input [3:0] a;
+  input [3:0] b;
+  always@(a,b,c) begin
+    {c,s}=a+b;
+  end
+endmodule
