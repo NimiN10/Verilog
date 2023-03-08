@@ -1,0 +1,29 @@
+module FA_4bits_df_tb();
+  reg [3:0] a,b;
+  reg cin;
+  wire [3:0] s;
+  wire cout;
+  
+ FA_4bits_df FA3(s,cout,a,b,cin);
+    initial
+      $monitor("time=%d\t s=%b\t cout=%b\t a=%b\t b=%b\t cin=%b\t",$time,s,cout,a,b,cin);
+    
+    initial begin
+      a=0;
+      b=0;
+      cin=0;
+      repeat(16) begin
+        #5 a=a+1;
+        repeat(16) begin
+        #5 b=b+1;
+          repeat (2) begin
+        #5 cin=~cin;
+          end
+        end
+    end
+    end
+      initial begin
+        $dumpfile("FA_4bits_df.vcd");
+        $dumpvars(0,FA_4bits_df_tb);
+      end
+  endmodule
