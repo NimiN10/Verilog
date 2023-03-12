@@ -1,0 +1,22 @@
+module Encoder_4x2_case_tb();
+  wire [1:0] Q;
+  logic [3:0] D;
+  
+  Encoder_4x2_bh_case Decoder1(.*);
+  
+  initial
+    $monitor("time=%d\t,Q=%b\t,F=%b\t",$time,Q,D);
+  
+  initial begin
+  D=2'd0;
+    repeat(16) begin
+      #5 D=D+1;
+  
+  
+  end
+  end
+    initial begin
+      $dumpfile("Encoder_4x2_bh_case.vcd");
+      $dumpvars(0,Encoder_4x2_case_tb);
+    end
+    endmodule
