@@ -4,11 +4,11 @@ module Decoder_2x4_case(D,A);
   
   
   always@(*)
-    case(A):
-      2d'0: D=4d'0;
-      2d'1: D=4d'1;
-      2d'2: D=4d'2;
-      2d'3: D=4d'4;
+    case(A)
+      2'd0: D=4'd0;
+      2'd1: D=4'd1;
+      2'd2: D=4'd2;
+      2'd3: D=4'd4;
       default:$display("error");
    endcase
    endmodule
