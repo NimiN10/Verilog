@@ -1,22 +1,14 @@
-module Encoder_4x2_case_tb();
-  wire [1:0] Q;
-  logic [3:0] D;
+module Encoder_4x2_bh_case(Q,D);
+  output reg [1:0] Q;
+  input [3:0] D;
   
-  Encoder_4x2_bh_case Decoder1(.*);
-  
-  initial
-    $monitor("time=%d\t,Q=%b\t,F=%b\t",$time,Q,D);
-  
-  initial begin
-  D=2'd0;
-    repeat(16) begin
-      #5 D=D+1;
-  
-  
-  end
-  end
-    initial begin
-      $dumpfile("Encoder_4x2_bh_case.vcd");
-      $dumpvars(0,Encoder_4x2_case_tb);
-    end
-    endmodule
+  always@(*)
+    case(D)
+      4'd1:Q=2'd0;
+      4'd2:Q=2'd1;
+      4'd4:Q=2'd2;
+      4'd8:Q=2'd3;
+      4'd0,4'd3,4'd5,4'd6,4'd7,4'd9,4'd10,4'd11,4'd12,4'd13,4'd14,4'd15:Q=2'd0;
+      default:$display("Error in choice");
+      endcase
+endmodule
