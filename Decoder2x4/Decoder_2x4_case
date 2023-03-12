@@ -5,10 +5,10 @@ module Decoder_2x4_case(D,A);
   
   always@(*)
     case(A)
-      2'd0: D=4'd0;
-      2'd1: D=4'd1;
-      2'd2: D=4'd2;
-      2'd3: D=4'd4;
+      2'd0: D=4'd1;
+      2'd1: D=4'd2;
+      2'd2: D=4'd4;
+      2'd3: D=4'd8;
       default:$display("error");
    endcase
    endmodule
