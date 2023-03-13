@@ -1,0 +1,27 @@
+module PEncoder_2x4_tb();
+  reg [3:0] I;
+  reg E;
+  wire [1:0] Y;
+  
+  PEncoder_4x2_df Encoder2 (.*);
+  
+  initial
+    $monitor("time=%d\t Y=%b\t I=%b\t E=%b\t ",$time,Y,I,E);
+    
+  
+  initial begin
+    I=4'b0000;
+    E=1'b0;
+    repeat(2)
+      #5 E=~E;
+        repeat(16)
+          #5 I=I+1;
+         end
+  end
+  
+  
+  initial begin
+    $dumpfile("PEncoder_4x2_df.vcd");
+    $dumpvars(0,PEncoder_4x2_tb);
+  end
+endmodule
