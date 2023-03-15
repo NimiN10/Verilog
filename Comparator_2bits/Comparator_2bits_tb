@@ -1,0 +1,23 @@
+module Comparator_df_2bits_tb();
+  reg [1:0] A,B;
+  wire Eq,Gt,Sm;
+  
+  Comparator_df_2bits comparator1(Eq,Gt,Sm,A,B);
+  
+  
+initial begin
+   A=0;
+   B=0;
+   repeat(4) begin
+     #5 A=A+1;
+     repeat(4) begin
+     #5 B=B+1;
+     end
+  end
+end
+ 
+  initial begin
+    $dumpfile("Comparator_df_2bits.vcd");
+    $dumpvars(0,Comparator_df_2bits_tb);
+  end
+  endmodule
