@@ -1,0 +1,55 @@
+// Code your testbench here
+// or browse Examples
+
+module tb_counter_4bit;
+
+  // 1. Signals that drive the inputs (reg) and observe the outputs (wire)
+  reg  CLK, RST,EN;
+  wire [3:0] Q;
+
+  // 2. Instantiate the circuit under test (DUT = Device Under Test)
+    counter_4bit dut (
+      .CLK(CLK), .RST(RST),.EN(EN)
+      ,.Q(Q)
+  );
+
+  // 3. Clock 
+  	always #5 CLK=~CLK;
+    
+  // 4. Reference model: same rules as the design, so we know the expected value
+  reg [3:0] expected;
+  always @(posedge CLK) begin
+    if (RST)     expected <= 0;
+    else if (EN) expected <= expected + 1;
+  end
+
+  // 5. Checker: compare on the falling edge (Q is stable by then)
+  integer errors = 0;
+  always @(negedge CLK) begin
+    if (Q !== expected) begin
+      errors = errors + 1;
+      $display("ERROR at t=%0t: Q=%0d expected=%0d", $time, Q, expected);
+    end
+  end
+
+  // 6. Stimulus: drive inputs only
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(0, tb_counter_4bit);
+
+    CLK = 0; RST = 1; EN = 0;
+    #20;                      // reset for 2 clocks
+
+    RST = 0; EN = 1;  #200;   // count 20 clocks (includes the 15 -> 0 wrap)
+    EN = 0;           #50;    // pause: Q must hold
+    EN = 1;           #30;    // continue counting
+    RST = 1;          #20;    // reset in the middle of counting
+    RST = 0;          #40;    // count again from 0
+
+    // 7. Final result
+    if (errors == 0) $display("PASS: all checks passed");
+    else             $display("FAIL: %0d errors", errors);
+    $finish;
+  end
+
+endmodule
