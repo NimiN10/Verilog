@@ -1,0 +1,17 @@
+// Code your design here
+
+module counter_4bit(
+  input      CLK, RST,EN,
+  output reg [3:0]Q
+);
+  always @(posedge CLK) begin
+    if (RST==1) begin
+      Q<=0;
+      end 
+    	else begin
+          if(EN==1)begin
+      		Q<=Q+1;
+     		end
+      	end
+  end
+endmodule
